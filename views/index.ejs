@@ -1,0 +1,21 @@
+<form id="index">
+    <input type="text" name="user" >
+    <button>Submit</button>
+    
+</form>
+<table>
+    <tr>
+        <th>avatar</th>
+        <th>login</th>
+        <th>url</th>
+    </tr>
+    <% data.forEach(function(item) { %>
+        <tr>
+        <td><img height="50px" width="50px" src="<%= item.avatar_url %>" > </td>
+        <td><%= item.login %> </td>
+        <td><%= item.url %> </td>
+    </tr>
+       
+    <% }); %>
+
+</table>

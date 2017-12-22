@@ -1,13 +1,17 @@
 const axios = require('axios');
 const app = require('express')();
 const port = process.env.PORT || 7777; 
+const bodyParser = require('body-parser')
 
-
-app.get('/user/:user', function (req, res) {
-    let id = req.params.user
+app.set('view engine', 'ejs')
+const jsonParser = bodyParser.json()
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+app.get('/', function (req, res) {
+    let id = req.query.user
     axios.get('https://api.github.com/users/' + id +'/followers')
     .then(function(response){      
-         res.send('User' + response.data[0].login)
+        let data = response.data
+        res.render('index', {data: data})
         
     })
     .catch(function(error){          
