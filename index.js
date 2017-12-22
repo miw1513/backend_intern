@@ -9,8 +9,11 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.get('/', function (req, res) {
     let id = req.query.user
     axios.get('https://api.github.com/users/' + id +'/followers')
-    .then(function(response){      
-        let data = response.data
+    .then(function(response){
+        let data = []
+        if (!req.query.user == ''){
+        data = response.data
+        }  
         res.render('index', {data: data})
         
     })
