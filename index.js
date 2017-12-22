@@ -7,7 +7,8 @@ app.get('/user/:user', function (req, res) {
     let id = req.params.user
     axios.get('https://api.github.com/users/' + id +'/followers')
     .then(function(response){      
-        res.json(response)
+         res.send('User' + response.data[0].login)
+        
     })
     .catch(function(error){          
         if (error.response) {
